@@ -8,23 +8,27 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-final TextEditingController _usernameController = TextEditingController();
-final TextEditingController _passwordController = TextEditingController();
-
-
-Future login(String username, String password) async {
-  final url = Uri.parse("https://7d75-134-220-250-238.eu.ngrok.io/login.php");
-  final response = await http.post(
-      url,
-      body: {
-        'email': "${username}",
-        'password': "${password}",
-      }
-  );
-  print(response.body);
-}
-
 class _LoginPageState extends State<LoginPage>{
+
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  String _postResponse = '';
+
+  Future login(String username, String password) async {
+    final url = Uri.parse("https://7d75-134-220-250-238.eu.ngrok.io/login.php");
+    final response = await http.post(
+        url,
+        body: {
+          'User': "${username}",
+          'password': "${password}",
+        }
+    );
+    setState(() {
+      _postResponse = response.body;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -166,8 +170,13 @@ class _LoginPageState extends State<LoginPage>{
                       ),
                     )
                   ],
-                )
+                ),
 
+                  SizedBox(height: 10,),
+
+                    Text(
+                        _postResponse
+                    )
 
 
               ]),

@@ -13,16 +13,20 @@ class _RegisterPageState extends State<RegisterPage>{
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  String _postResponse = '';
   
   Future register(String username, String password) async {
     final url = Uri.parse("https://7d75-134-220-250-238.eu.ngrok.io/register.php");
     final response = await http.post(
         url,
         body: {
-          'email': "${username}",
+          'User': "${username}",
           'password': "${password}",
         }
-    );
+    ); // possible response = ["Failed to connect to MySQL:", "Email already exists", "SQL error dscription:", "You have successfully registered!"]
+    setState(() {
+      _postResponse = response.body;
+    });
   }
 
 
@@ -122,9 +126,7 @@ class _RegisterPageState extends State<RegisterPage>{
                             _passwordController.text.trim()
                         );
                         // Navigator.pushNamed(context, '/login');
-                        print("Create account button pressed");
                       },
-
                       child: Container(
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
@@ -145,6 +147,12 @@ class _RegisterPageState extends State<RegisterPage>{
                     ),
                   ),
                   SizedBox(height: 15,),
+
+                  Text(
+                      _postResponse
+                  )
+
+
                 ]),
           )
       ),
