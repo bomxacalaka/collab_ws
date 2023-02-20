@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
+}
+
+final TextEditingController _usernameController = TextEditingController();
+final TextEditingController _passwordController = TextEditingController();
+
+
+Future login(String username, String password) async {
+  final url = Uri.parse("https://7d75-134-220-250-238.eu.ngrok.io/login.php");
+  final response = await http.post(
+      url,
+      body: {
+        'email': "${username}",
+        'password': "${password}",
+      }
+  );
+  print(response.body);
 }
 
 class _LoginPageState extends State<LoginPage>{
@@ -50,6 +67,7 @@ class _LoginPageState extends State<LoginPage>{
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextField(
+                        controller: _usernameController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "Email",
@@ -81,6 +99,7 @@ class _LoginPageState extends State<LoginPage>{
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: TextField(
+                        controller: _passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -96,19 +115,24 @@ class _LoginPageState extends State<LoginPage>{
                 // login button
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(5)
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15
+                  child: GestureDetector(
+                    onTap: () {
+                      login(_usernameController.text.trim(), _passwordController.text.trim());
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(5)
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15
+                          ),
                         ),
                       ),
                     ),

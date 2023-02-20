@@ -1,8 +1,4 @@
-import 'dart:convert';
-// import 'dart:html';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-
 import 'package:http/http.dart' as http;
 
 class RegisterPage extends StatefulWidget {
@@ -17,57 +13,6 @@ class _RegisterPageState extends State<RegisterPage>{
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  // Future<http.Response> fetchAlbum() {
-  //   return http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
-  // }
-
-  // Future<void> register() async {
-  //   // Response r = await post(
-  //   //   Uri.parse('https://7d75-134-220-250-238.eu.ngrok.io/register.php'),
-  //   //   body: {
-  //   //     'username': _usernameController.text.trim(),
-  //   //     'password': _passwordController.text.trim(),
-  //   //   },
-  //   // );
-  //
-  //   final url = Uri.parse(
-  //       'https://7d75-134-220-250-238.eu.ngrok.io/register.php');
-  //
-  //   final headers = {"Content-type": "application/json"};
-  //   final json = """{
-  //   "email": "${_usernameController.text.trim()}",
-  //   "password": "${_passwordController.text.trim()}"
-  //   }""";
-  //   print(json);
-  //
-  //   // final response = await post(url, headers: headers, body: json);
-  //
-  //   // post request
-  //   final response = Uri.https(
-  //       "7d75-134-220-250-238.eu.ngrok.io", "/register.php", {
-  //     "email": "${_usernameController.text.trim()}",
-  //     "password": "${_passwordController.text.trim()}"
-  //   });
-  // }
-
-
-    // print('Status code: ${response.statusCode}');
-    // print('Body: ${response.body}');
-
-
-
-    // const urlPrefix = 'https://jsonplaceholder.typicode.com';
-    //
-    // final url = Uri.parse('$urlPrefix/posts');
-    // final headers = {"Content-type": "application/json"};
-    // final json = '{"title": "Hello", "body": "body text", "userId": 1}';
-    // final response = await post(url, headers: headers, body: json);
-    // print('Status code: ${response.statusCode}');
-    // print('Body: ${response.body}');
-    //
-    // }
-  // }
-  
   
   Future register(String username, String password) async {
     final url = Uri.parse("https://7d75-134-220-250-238.eu.ngrok.io/register.php");
@@ -78,10 +23,9 @@ class _RegisterPageState extends State<RegisterPage>{
           'password': "${password}",
         }
     );
-    print(response.body);
   }
 
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
