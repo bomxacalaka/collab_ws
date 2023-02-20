@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+
   flutter:
     sdk: flutter
 
@@ -36,6 +37,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   http: any
+  firebase_auth: ^4.2.8
+
 
 dev_dependencies:
   flutter_launcher_icons: "^0.11.0"
@@ -51,7 +54,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter_icons:
-  android: "launcher_icon"
+  android: true
   ios: true
   image_path: "assets/soap_trap.jpeg"
   min_sdk_android: 21 # android min sdk min:16, default 21
