@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage>{
               SizedBox(height: 20),
               // welcoming
               Text(
-                "Hello user",
+                "CareLink",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
@@ -121,18 +121,23 @@ class _LoginPageState extends State<LoginPage>{
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Not registered? ",
+                    "Not registered?",
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
 
-                  Text(
-                    "Register now",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/register');
+                    },
+                    child: Text(
+                      "Register now",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   )
                 ],
