@@ -56,6 +56,8 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
+  image_path_android: "assets/soap_trap.jpeg"
+  image_path_ios: "assets/soap_trap.jpeg"
   image_path: "assets/soap_trap.jpeg"
   min_sdk_android: 21 # android min sdk min:16, default 21
   web:
