@@ -1,4 +1,9 @@
+import 'dart:convert';
+// import 'dart:html';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+
+import 'package:http/http.dart' as http;
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -8,6 +13,75 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage>{
+
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  // Future<http.Response> fetchAlbum() {
+  //   return http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+  // }
+
+  // Future<void> register() async {
+  //   // Response r = await post(
+  //   //   Uri.parse('https://7d75-134-220-250-238.eu.ngrok.io/register.php'),
+  //   //   body: {
+  //   //     'username': _usernameController.text.trim(),
+  //   //     'password': _passwordController.text.trim(),
+  //   //   },
+  //   // );
+  //
+  //   final url = Uri.parse(
+  //       'https://7d75-134-220-250-238.eu.ngrok.io/register.php');
+  //
+  //   final headers = {"Content-type": "application/json"};
+  //   final json = """{
+  //   "email": "${_usernameController.text.trim()}",
+  //   "password": "${_passwordController.text.trim()}"
+  //   }""";
+  //   print(json);
+  //
+  //   // final response = await post(url, headers: headers, body: json);
+  //
+  //   // post request
+  //   final response = Uri.https(
+  //       "7d75-134-220-250-238.eu.ngrok.io", "/register.php", {
+  //     "email": "${_usernameController.text.trim()}",
+  //     "password": "${_passwordController.text.trim()}"
+  //   });
+  // }
+
+
+    // print('Status code: ${response.statusCode}');
+    // print('Body: ${response.body}');
+
+
+
+    // const urlPrefix = 'https://jsonplaceholder.typicode.com';
+    //
+    // final url = Uri.parse('$urlPrefix/posts');
+    // final headers = {"Content-type": "application/json"};
+    // final json = '{"title": "Hello", "body": "body text", "userId": 1}';
+    // final response = await post(url, headers: headers, body: json);
+    // print('Status code: ${response.statusCode}');
+    // print('Body: ${response.body}');
+    //
+    // }
+  // }
+  
+  
+  Future register(String username, String password) async {
+    final url = Uri.parse("https://7d75-134-220-250-238.eu.ngrok.io/register.php");
+    final response = await http.post(
+        url,
+        body: {
+          'email': "${username}",
+          'password': "${password}",
+        }
+    );
+    print(response.body);
+  }
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +123,7 @@ class _RegisterPageState extends State<RegisterPage>{
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20.0),
                         child: TextField(
+                          controller: _usernameController,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: "Email",
@@ -80,6 +155,7 @@ class _RegisterPageState extends State<RegisterPage>{
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20.0),
                         child: TextField(
+                          controller: _passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -92,22 +168,33 @@ class _RegisterPageState extends State<RegisterPage>{
                   SizedBox(height: 20,),
 
 
-                  // login button
+                  // Create account button
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(5)
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Create account",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15
+                    child: GestureDetector(
+                      onTap: () {
+                        register(
+                            _usernameController.text.trim(),
+                            _passwordController.text.trim()
+                        );
+                        // Navigator.pushNamed(context, '/login');
+                        print("Create account button pressed");
+                      },
+
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(5)
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Create account",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15
+                            ),
                           ),
                         ),
                       ),
@@ -120,3 +207,4 @@ class _RegisterPageState extends State<RegisterPage>{
     );
   }
 }
+
