@@ -1,6 +1,6 @@
 # collab_ws
 
-A collab homework wink wink
+A collab ̶h̶o̶m̶e̶w̶o̶r̶k̶  assignment wink wink.
 
 ## Getting Started
 
