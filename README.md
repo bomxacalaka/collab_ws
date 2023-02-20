@@ -1,6 +1,6 @@
 # collab_ws
 
-A collab homework wink wink
+A collab assignment wink wink.
 
 ## Getting Started
 
