@@ -1,3 +1,4 @@
+import 'package:collab_ws/fields.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -27,6 +28,9 @@ class _RegisterPageState extends State<RegisterPage>{
     setState(() {
       _postResponse = response.body;
     });
+    if (_postResponse == "You have successfully registered!") {
+      Navigator.pushNamed(context, '/home');
+    }
   }
 
 
@@ -51,107 +55,15 @@ class _RegisterPageState extends State<RegisterPage>{
 
                   SizedBox(height: 30),
 
-                  // email
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(250, 250, 250, 1),
-                        border: Border.all(color: Color.fromRGBO(241, 241, 241, 1)),
-                        borderRadius: BorderRadius.circular(12),
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //     color: Colors.grey.withOpacity(0.5),
-                        //     spreadRadius: 1,
-                        //     blurRadius: 2,
-                        //     offset: Offset(0, 1), // changes position of shadow
-                        //   ),
-                        // ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: TextField(
-                          controller: _usernameController,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Email",
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15,),
+                  textfield(text: "Email plz", controller: _usernameController, obscureit: false,), const SizedBox(height: 15,),
 
+                  textfield(text: "Password", controller: _passwordController, obscureit: true,), const SizedBox(height: 15,),
 
-                  // password
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(250, 250, 250, 1),
-                        border: Border.all(color: Color.fromRGBO(241, 241, 241, 1)),
-                        borderRadius: BorderRadius.circular(12),
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //     color: Colors.grey.withOpacity(0.5),
-                        //     spreadRadius: 1,
-                        //     blurRadius: 2,
-                        //     offset: Offset(0, 1), // changes position of shadow
-                        //   ),
-                        // ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: TextField(
-                          controller: _passwordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Password",
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20,),
-
-
-                  // Create account button
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        register(
-                            _usernameController.text.trim(),
-                            _passwordController.text.trim()
-                        );
-                        // Navigator.pushNamed(context, '/login');
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(5)
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Create account",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 15,),
+                  nicebutton(usernameController: _usernameController, passwordController: _passwordController, text: "Create account", on_click_action: register),
 
                   Text(
                       _postResponse
                   )
-
 
                 ]),
           )

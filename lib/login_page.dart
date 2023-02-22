@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'fields.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -20,13 +22,17 @@ class _LoginPageState extends State<LoginPage>{
     final response = await http.post(
         url,
         body: {
-          'User': "${username}",
-          'password': "${password}",
+          'User': username,
+          'password': password,
         }
     );
     setState(() {
       _postResponse = response.body;
     });
+
+    if(response.body == "Password is correct"){
+      Navigator.pushNamed(context, '/home');
+    }
   }
 
   @override
@@ -39,145 +45,43 @@ class _LoginPageState extends State<LoginPage>{
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                SizedBox(height: 20),
-                // welcoming
-                Text(
-                  "CareLink",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
-                ),
-                ),
 
-                SizedBox(height: 30),
+                const SizedBox(height: 20),
 
-                // email
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(250, 250, 250, 1),
-                      border: Border.all(color: Color.fromRGBO(241, 241, 241, 1)),
-                      borderRadius: BorderRadius.circular(12),
-                      // boxShadow: [
-                      //   BoxShadow(
-                      //     color: Colors.grey.withOpacity(0.5),
-                      //     spreadRadius: 1,
-                      //     blurRadius: 2,
-                      //     offset: Offset(0, 1), // changes position of shadow
-                      //   ),
-                      // ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: TextField(
-                        controller: _usernameController,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Email",
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 15,),
-
-
-                // password
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(250, 250, 250, 1),
-                      border: Border.all(color: Color.fromRGBO(241, 241, 241, 1)),
-                      borderRadius: BorderRadius.circular(12),
-                      // boxShadow: [
-                      //   BoxShadow(
-                      //     color: Colors.grey.withOpacity(0.5),
-                      //     spreadRadius: 1,
-                      //     blurRadius: 2,
-                      //     offset: Offset(0, 1), // changes position of shadow
-                      //   ),
-                      // ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: TextField(
-                        controller: _passwordController,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Password",
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20,),
-
-
-                // login button
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      login(_usernameController.text.trim(), _passwordController.text.trim());
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(5)
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Login",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 15,),
-
-
-                // register button
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Not registered?",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    const simple_text(
+                        text: "SPEC5"
                     ),
 
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/register');
-                      },
-                      child: Text(
-                        "Register now",
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+                    const SizedBox(height: 30),
 
-                  SizedBox(height: 10,),
+                    textfield(
+                      text: "Email plz",
+                      controller: _usernameController,
+                      obscureit: false,
+                    ), const SizedBox(height: 15,),
+
+                    textfield(
+                      text: "Password",
+                      controller: _passwordController,
+                      obscureit: true,
+                    ), const SizedBox(height: 15,),
+
+                    nicebutton(
+                        usernameController: _usernameController,
+                        passwordController: _passwordController,
+                        text: "login here",
+                        on_click_action: login
+                    ), const SizedBox(height: 15,),
+
+                    register_now(
+                        on_click_action: () => Navigator.pushNamed(context, '/register')
+                    ),
+
+                  const SizedBox(height: 10,),
 
                     Text(
                         _postResponse
                     )
-
 
               ]),
             ),
@@ -186,3 +90,5 @@ class _LoginPageState extends State<LoginPage>{
     );
   }
 }
+
+

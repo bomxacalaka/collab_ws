@@ -1,7 +1,9 @@
+import 'package:collab_ws/rootApp.dart';
 import 'package:flutter/material.dart';
 import 'login_page.dart';
 import 'register_page.dart';
-import 'rootApp.dart';
+import 'homeScreen.dart';
+import 'jobsScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +20,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),
+        '/home': (context) => HomePage(),
+        '/jobs': (context) => JobsScreen(),
       }
     );
   }
