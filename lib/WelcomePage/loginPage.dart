@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'components.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'fields.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,6 +16,21 @@ class _LoginPageState extends State<LoginPage>{
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+
+  checkLocalLogin() async {
+    final prefs = await SharedPreferences.getInstance();
+    // check if user is logged in
+    if (prefs.getString('username2') != null) {
+      // if logged in, go to home page
+      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+    }else {
+      // if not logged in, go to login page
+      print("not logged in");
+      return null;
+    }
+  }
+
+
   String _postResponse = '';
 
   Future login(String username, String password) async {
@@ -27,13 +43,28 @@ class _LoginPageState extends State<LoginPage>{
         }
     );
     setState(() {
-      _postResponse = response.body;
+      /* Possible server responses:
+      Password is correct
+      Password is incorrect
+      User does not exist
+       */
+      _postResponse = response.body.substring(0, 19);
     });
 
+    // Obtain shared preferences.
+    final prefs = await SharedPreferences.getInstance();
+
+    // if the password is correct,
+    // navigate to the home page
+    // and remove the login page from the stack
+    // so that the user cannot go back to the login page
     if(response.body == "Password is correct"){
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      // Save an String value to 'action' key.
+      await prefs.setString('username', "test69123");
+      }
     }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,36 +76,36 @@ class _LoginPageState extends State<LoginPage>{
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    // checkLocalLogin(),
+                    const SizedBox(height: 20),
 
-                const SizedBox(height: 20),
-
-                    const simple_text(
+                    const SimpleText(
                         text: "SPEC5"
                     ),
 
                     const SizedBox(height: 30),
 
-                    textfield(
-                      text: "Email plz",
+                    TextFieldHere(
+                      text: "Email",
                       controller: _usernameController,
-                      obscureit: false,
+                      obscureIt: false,
                     ), const SizedBox(height: 15,),
 
-                    textfield(
+                    TextFieldHere(
                       text: "Password",
                       controller: _passwordController,
-                      obscureit: true,
+                      obscureIt: true,
                     ), const SizedBox(height: 15,),
 
-                    nicebutton(
+                    NiceButton(
                         usernameController: _usernameController,
                         passwordController: _passwordController,
-                        text: "login here",
-                        on_click_action: login
+                        text: "Login",
+                        onClickAction: login
                     ), const SizedBox(height: 15,),
 
-                    register_now(
-                        on_click_action: () => Navigator.pushNamed(context, '/register')
+                    RegisterNow(
+                        onClickAction: () => Navigator.pushNamed(context, '/register')
                     ),
 
                   const SizedBox(height: 10,),

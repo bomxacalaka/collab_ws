@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
-class textfield extends StatelessWidget {
+
+class TextFieldHere extends StatelessWidget {
   final String text;
   final TextEditingController controller;
-  final bool obscureit;
+  final bool obscureIt;
 
-  const textfield({
+  const TextFieldHere({
     super.key,
     required this.text,
     required this.controller,
-    required this.obscureit,
+    required this.obscureIt,
   });
 
   @override
@@ -34,7 +36,7 @@ class textfield extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20.0),
           child: TextField(
             controller: controller,
-            obscureText: obscureit,
+            obscureText: obscureIt,
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: text,
@@ -46,20 +48,20 @@ class textfield extends StatelessWidget {
   }
 }
 
-
-class nicebutton extends StatelessWidget{
+// used on login and register pages buttons
+class NiceButton extends StatelessWidget{
 
   final TextEditingController usernameController;
   final TextEditingController passwordController;
   final String text;
-  final Function on_click_action;
+  final Function onClickAction;
 
-  const nicebutton ({
+  const NiceButton ({
     super.key,
     required this.usernameController,
     required this.passwordController,
     required this.text,
-    required this.on_click_action,
+    required this.onClickAction,
 });
 
   @override
@@ -68,7 +70,9 @@ class nicebutton extends StatelessWidget{
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: GestureDetector(
         onTap: () {
-          on_click_action(usernameController.text.trim(), passwordController.text.trim());
+          onClickAction(
+              usernameController.text.trim(),
+              passwordController.text.trim());
         },
         child: Container(
           padding: const EdgeInsets.all(10),
@@ -92,12 +96,13 @@ class nicebutton extends StatelessWidget{
   }
 }
 
-class register_now extends StatelessWidget{
-  final Function on_click_action;
 
-  const register_now ({
+class RegisterNow extends StatelessWidget{
+  final Function onClickAction;
+
+  const RegisterNow ({
     super.key,
-    required this.on_click_action,
+    required this.onClickAction,
 });
 
   @override
@@ -130,10 +135,10 @@ class register_now extends StatelessWidget{
   }
 }
 
-class simple_text extends StatelessWidget{
+class SimpleText extends StatelessWidget{
   final String text;
 
-  const simple_text ({
+  const SimpleText ({
     super.key,
     required this.text,
 });
@@ -142,7 +147,7 @@ class simple_text extends StatelessWidget{
   Widget build(BuildContext context){
     return Text(
       text,
-      style: TextStyle(
+      style: const TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 24,
       ),

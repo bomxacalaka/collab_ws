@@ -1,6 +1,7 @@
-import 'package:collab_ws/fields.dart';
+import 'package:collab_ws/WelcomePage/components.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -26,10 +27,16 @@ class _RegisterPageState extends State<RegisterPage>{
         }
     ); // possible response = ["Failed to connect to MySQL:", "Email already exists", "SQL error dscription:", "You have successfully registered!"]
     setState(() {
-      _postResponse = response.body;
+      _postResponse = response.body.substring(0, 19);
     });
+
+    // Obtain shared preferences.
+    final prefs = await SharedPreferences.getInstance();
     if (_postResponse == "You have successfully registered!") {
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      // Save an String value to 'action' key.
+      await prefs.setString('username', username);
+      await prefs.setString('token', response.body.substring(19));
     }
   }
 
@@ -55,11 +62,11 @@ class _RegisterPageState extends State<RegisterPage>{
 
                   SizedBox(height: 30),
 
-                  textfield(text: "Email plz", controller: _usernameController, obscureit: false,), const SizedBox(height: 15,),
+                  TextFieldHere(text: "Email", controller: _usernameController, obscureIt: false,), const SizedBox(height: 15,),
 
-                  textfield(text: "Password", controller: _passwordController, obscureit: true,), const SizedBox(height: 15,),
+                  TextFieldHere(text: "Password", controller: _passwordController, obscureIt: true,), const SizedBox(height: 15,),
 
-                  nicebutton(usernameController: _usernameController, passwordController: _passwordController, text: "Create account", on_click_action: register),
+                  NiceButton(usernameController: _usernameController, passwordController: _passwordController, text: "Create account", onClickAction: register),
 
                   Text(
                       _postResponse
