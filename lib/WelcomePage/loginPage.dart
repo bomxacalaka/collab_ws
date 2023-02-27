@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage>{
                     const SizedBox(height: 30),
 
                     TextFieldHere(
-                      text: "Email",
+                      text: "Username",
                       controller: _usernameController,
                       obscureIt: false,
                     ), const SizedBox(height: 15,),
