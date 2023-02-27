@@ -1,7 +1,11 @@
+// import 'dart:convert';
+import 'package:collab_ws/WelcomePage/checkin.dart';
+// import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'components.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:http/http.dart' as http;
+import '../home/components.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:collab_ws/main.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -17,55 +21,48 @@ class _LoginPageState extends State<LoginPage>{
   final TextEditingController _passwordController = TextEditingController();
 
 
-  checkLocalLogin() async {
-    final prefs = await SharedPreferences.getInstance();
-    // check if user is logged in
-    if (prefs.getString('username2') != null) {
-      // if logged in, go to home page
-      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-    }else {
-      // if not logged in, go to login page
-      print("not logged in");
-      return null;
-    }
-  }
-
-
   String _postResponse = '';
 
   Future login(String username, String password) async {
-    final url = Uri.parse("https://7d75-134-220-250-238.eu.ngrok.io/login.php");
-    final response = await http.post(
-        url,
-        body: {
-          'User': username,
-          'password': password,
-        }
-    );
-    setState(() {
-      /* Possible server responses:
-      Password is correct
-      Password is incorrect
-      User does not exist
-       */
-      _postResponse = response.body.substring(0, 19);
-    });
 
-    // Obtain shared preferences.
-    final prefs = await SharedPreferences.getInstance();
+    // gets message from API using controllers from the login
+    final messageResponse = await checkin(username, password, version, 'login');
+
+    // check response and change to home screen
+    if(messageResponse == "Login successful"){
+      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+    }
+
+    // this check makes sure setState doesnt get called the first time when rootApp runs this login class on initialization
+    if (username != "ignore") {
+      setState(() {
+        _postResponse = messageResponse;
+      });
+    }
+
+//     var uuid = Uuid();
+//     // Generate a v1 (time-based) id
+//     uuid.v1(); // -> '6c84fb90-12c4-11e1-840d-7b25c5ee775a'
+//
+//
+// // Generate a v4 (random) id
+//     uuid.v4(); // -> '110ec58a-a0f2-4ac4-8393-c866d813b8d1'
+//
+// // Generate a v5 (namespace-name-sha1-based) id
+//     uuid.v5(Uuid.NAMESPACE_URL, 'www.google.com'); // -> 'c74a196f-f19d-5ea9-bffd-a2742432fc9c'
 
     // if the password is correct,
     // navigate to the home page
     // and remove the login page from the stack
     // so that the user cannot go back to the login page
-    if(response.body == "Password is correct"){
-      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-      // Save an String value to 'action' key.
-      await prefs.setString('username', "test69123");
-      }
+
     }
 
-
+    @override
+  void initState() {
+    super.initState();
+    login("ignore", "ignore");
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

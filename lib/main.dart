@@ -1,10 +1,13 @@
-import 'package:collab_ws/jobsPage/manager/rootApp.dart';
+import 'package:collab_ws/WelcomePage/rootApp.dart';
 import 'package:flutter/material.dart';
 import 'WelcomePage/loginPage.dart';
 import 'WelcomePage/registerPage.dart';
-import 'WelcomePage/homeScreen.dart';
+import 'home/homeScreen.dart';
 import 'jobsPage/jobsScreen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:flutter_native_splash/flutter_native_splash.dart';
+
+const String version = "0.0.0";
 
 void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
     // });
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: const RootApp(),
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
@@ -35,6 +38,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => RegisterPage(),
         '/home': (context) => HomePage(),
         '/jobs': (context) => JobsScreen(),
+        '/root': (context) => RootApp(),
       }
     );
   }
