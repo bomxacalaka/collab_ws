@@ -1,9 +1,11 @@
 import 'package:collab_ws/WelcomePage/rootApp.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'WelcomePage/loginPage.dart';
 import 'WelcomePage/registerPage.dart';
 import 'home/homeScreen.dart';
 import 'jobsPage/jobsScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -11,12 +13,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 const String version = "0.0.0";
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
-  // await Firebase.initializeApp( );
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
   runApp(const MyApp());
 }
 // added ios imples

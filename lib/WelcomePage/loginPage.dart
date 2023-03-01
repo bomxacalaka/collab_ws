@@ -1,5 +1,6 @@
 // import 'dart:convert';
 import 'package:collab_ws/WelcomePage/checkin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
 // import 'package:http/http.dart' as http;
@@ -22,24 +23,20 @@ class _LoginPageState extends State<LoginPage>{
   final TextEditingController _passwordController = TextEditingController();
 
 
-  String _postResponse = '';
-
   Future login(String username, String password) async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: username,
+        password: password
+    );
+  }
 
-    // gets message from API using controllers from the login
-    final messageResponse = await checkin(username, password, version, 'login');
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
-    // check response and change to home screen
-    if(messageResponse == "Login successful"){
-      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-    }
-
-    // this check makes sure setState doesnt get called the first time when rootApp runs this login class on initialization
-    if (username != "ignore") {
-      setState(() {
-        _postResponse = messageResponse;
-      });
-    }
 
 //     var uuid = Uuid();
 //     // Generate a v1 (time-based) id
@@ -57,13 +54,8 @@ class _LoginPageState extends State<LoginPage>{
     // and remove the login page from the stack
     // so that the user cannot go back to the login page
 
-    }
 
-    @override
-  void initState() {
-    super.initState();
-    login("ignore", "ignore");
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,13 +97,6 @@ class _LoginPageState extends State<LoginPage>{
                     RegisterNow(
                         onClickAction: () => Navigator.pushNamed(context, '/register')
                     ),
-
-                  const SizedBox(height: 10,),
-
-                    Text(
-                        _postResponse
-                    ),
-                    ElevatedButton(onPressed: () {Navigator.pushNamed(context, "/home");}, child: const Text("Bypass Login")),
 
               ]),
             ),

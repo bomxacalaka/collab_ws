@@ -1,6 +1,7 @@
 import 'package:collab_ws/jobsPage/addButton.dart';
 import 'package:collab_ws/home/components.dart';
 import 'package:collab_ws/jobsPage/jobsScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../jobsPage/jobsScreen.dart';
@@ -16,6 +17,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>{
 
   String _response = 'press here to get';
+
+
+  final user = FirebaseAuth.instance.currentUser;
 
   // Future register() async {
   //   final url = Uri.parse("https://7d75-134-220-250-238.eu.ngrok.io/register.php");
@@ -102,7 +106,11 @@ class _HomePageState extends State<HomePage>{
                     minimumSize: const Size(300, 70),
                   ),
 
-                  child: Text(_response)
+                  child: Text(_response),
+                ),
+
+                ElevatedButton(onPressed: () => { FirebaseAuth.instance.signOut() }, child: Text("Sign out of ${user!.email!}"
+                ),
                 ),
               ]),
         ),
