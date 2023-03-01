@@ -1,4 +1,5 @@
 import 'package:collab_ws/home/components.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:http/http.dart' as http;
 // import 'package:shared_preferences/shared_preferences.dart';
@@ -7,7 +8,8 @@ import '../main.dart';
 import 'checkin.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+  final VoidCallback showLoginPage;
+  const RegisterPage({Key? key, required this.showLoginPage}) : super(key: key);
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -17,26 +19,32 @@ class _RegisterPageState extends State<RegisterPage>{
 
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
-  String _postResponse = '';
+  final _confirmPasswordController = TextEditingController();
 
 
   Future register(String username, String password) async {
+    passwordConfirmed(password);
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: username,
+        password: password
+    );
+  }
 
-    // gets message from API using controllers from the login
-    final messageResponse = await checkin(username, password, version, 'register');
-
-    // check response and change to home screen
-    if(messageResponse == "You have successfully registered!"){
-      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+  passwordConfirmed(String password) {
+    if (password != _confirmPasswordController.text) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Passwords do not match")));
+      return;
     }
+  }
 
-    // this check makes sure setState doesnt get called the first time when rootApp runs this login class on initialization
-    if (username != "ignore") {
-      setState(() {
-        _postResponse = messageResponse;
-      });
-    }
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
 
 //     var uuid = Uuid();
 //     // Generate a v1 (time-based) id
@@ -53,8 +61,6 @@ class _RegisterPageState extends State<RegisterPage>{
     // navigate to the home page
     // and remove the login page from the stack
     // so that the user cannot go back to the login page
-
-  }
 
 
   @override
@@ -78,16 +84,35 @@ class _RegisterPageState extends State<RegisterPage>{
 
                   const SizedBox(height: 30),
 
-                  TextFieldHere(text: "Email", controller: _usernameController, obscureIt: false,), const SizedBox(height: 15,),
+                  TextFieldHere(
+                    text: "Email",
+                    controller: _usernameController,
+                    obscureIt: false,),
+                  const SizedBox(height: 10,),
 
-                  TextFieldHere(text: "Password", controller: _passwordController, obscureIt: true,), const SizedBox(height: 15,),
+                  TextFieldHere(
+                    text: "Password",
+                    controller: _passwordController,
+                    obscureIt: true,),
+                  const SizedBox(height: 10,),
 
-                  NiceButton(usernameController: _usernameController, passwordController: _passwordController, text: "Create account", onClickAction: register),
+                  TextFieldHere(
+                    text: "Confirm Password",
+                    controller: _confirmPasswordController,
+                    obscureIt: true,),
+                  const SizedBox(height: 15,),
 
-                  Text(
-                      _postResponse
-                  )
+                  NiceButton(
+                      usernameController: _usernameController,
+                      passwordController: _passwordController,
+                      text: "Create account",
+                      onClickAction: register),
 
+                  SmallTextButton(
+                      onClickAction: () => widget.showLoginPage(),
+                      text1: "Already have an account? ",
+                      text2: "Log in"
+                  ),
                 ]),
           )
       ),

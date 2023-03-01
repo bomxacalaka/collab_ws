@@ -8,10 +8,11 @@ import '../home/components.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import 'package:collab_ws/main.dart';
 
-//change to test auto deploy with webhook to codemagic
+import 'forgot_password_page.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  final VoidCallback showRegisterPage;
+  const LoginPage({Key? key, required this.showRegisterPage}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -22,13 +23,15 @@ class _LoginPageState extends State<LoginPage>{
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-
   Future login(String username, String password) async {
+    //check if
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: username,
         password: password
     );
   }
+
+
 
   @override
   void dispose() {
@@ -85,17 +88,48 @@ class _LoginPageState extends State<LoginPage>{
                       text: "Password",
                       controller: _passwordController,
                       obscureIt: true,
-                    ), const SizedBox(height: 15,),
+                    ),
+
+                    Padding(
+                        padding: const EdgeInsets.only(right: 25),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              TextButton(
+                                  onPressed: () => widget.showRegisterPage(),
+                                  child: GestureDetector(
+                                    onTap: () => {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) {
+                                          return const ForgotPasswordPage();
+                                        }),
+                                      )
+                                    },
+                                    child: const Text("Forgot password?",
+                                      style: TextStyle(
+                                          color: Colors.blue,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  )
+                              )
+                            ]
+                        )
+                    ),
 
                     NiceButton(
                         usernameController: _usernameController,
                         passwordController: _passwordController,
                         text: "Login",
                         onClickAction: login
-                    ), const SizedBox(height: 15,),
+                    ),
 
-                    RegisterNow(
-                        onClickAction: () => Navigator.pushNamed(context, '/register')
+                    SmallTextButton(
+                        onClickAction: () => widget.showRegisterPage(),
+                      text1: "Don't have an account?",
+                      text2: "Register now",
                     ),
 
               ]),
