@@ -1,6 +1,6 @@
 # collab_ws
 
-A collab assignment wink wink.
+An app used to connect careers to clients.
 
 ## Getting Started
 
