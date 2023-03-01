@@ -4,6 +4,7 @@ import 'WelcomePage/loginPage.dart';
 import 'WelcomePage/registerPage.dart';
 import 'home/homeScreen.dart';
 import 'jobsPage/jobsScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:flutter_native_splash/flutter_native_splash.dart';
 
@@ -36,11 +37,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.grey,
       ),
       routes: {
-        '/login': (context) => LoginPage(),
-        '/register': (context) => RegisterPage(),
-        '/home': (context) => HomePage(),
-        '/jobs': (context) => JobsScreen(),
-        '/root': (context) => RootApp(),
+        '/login': (context) => const LoginPage(),
+        '/register': (context) => const RegisterPage(),
+        '/home': (context) => const HomePage(),
+        '/jobs': (context) => const JobsScreen(),
+        '/root': (context) => const RootApp(),
       }
     );
   }
