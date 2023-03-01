@@ -19,7 +19,7 @@ void main() async {
 
   runApp(const MyApp());
 }
-
+// added ios imples
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
