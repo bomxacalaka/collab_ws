@@ -27,6 +27,7 @@ class RootApp extends StatefulWidget {
   super.initState();
   Future.delayed(const Duration(seconds: 0), () {
     Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+    Navigator.pushNamed(context, "/home");
   });
   }
 

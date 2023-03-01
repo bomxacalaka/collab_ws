@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage>{
                   child: const Text('Jobs')
                 ),
                 const SizedBox(height: 20),
-                Logout(),
+                const Logout(),
                 const SizedBox(height: 20),
 
                 ElevatedButton(
