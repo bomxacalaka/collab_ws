@@ -23,14 +23,6 @@ class TextFieldHere extends StatelessWidget {
           color: const Color.fromRGBO(250, 250, 250, 1),
           border: Border.all(color: const Color.fromRGBO(241, 241, 241, 1)),
           borderRadius: BorderRadius.circular(12),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: Colors.grey.withOpacity(0.5),
-          //     spreadRadius: 1,
-          //     blurRadius: 2,
-          //     offset: Offset(0, 1), // changes position of shadow
-          //   ),
-          // ],
         ),
         child: Padding(
           padding: const EdgeInsets.only(left: 20.0),
@@ -99,12 +91,16 @@ class NiceButton extends StatelessWidget{
 }
 
 
-class RegisterNow extends StatelessWidget{
+class SmallTextButton extends StatelessWidget{
   final Function onClickAction;
+  final String text1;
+  final String text2;
 
-  const RegisterNow ({
+  const SmallTextButton ({
     super.key,
     required this.onClickAction,
+    required this.text1,
+    required this.text2,
 });
 
   @override
@@ -112,9 +108,9 @@ class RegisterNow extends StatelessWidget{
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
-          "Not registered?",
-          style: TextStyle(
+         Text(
+          text1,
+          style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
@@ -122,11 +118,10 @@ class RegisterNow extends StatelessWidget{
 
         TextButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/register');
-          },
-          child: const Text(
-            "Register now",
-            style: TextStyle(
+            onClickAction();},
+          child: Text(
+            text2,
+            style: const TextStyle(
               color: Colors.blue,
               fontWeight: FontWeight.bold,
             ),

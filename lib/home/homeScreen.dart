@@ -17,12 +17,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>{
   final user = FirebaseAuth.instance.currentUser;
 
+  final list = [
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
     appBar: AppBar(
       leading: IconButton(
-        icon: const Icon(Icons.menu),
+        icon: const Icon(Icons.logout),
         onPressed: () {
           FirebaseAuth.instance.signOut();
         },

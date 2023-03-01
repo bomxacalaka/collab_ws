@@ -10,8 +10,14 @@ class SimplestClassTemplate extends StatefulWidget {
 class _SimplestClassTemplateState extends State<SimplestClassTemplate> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text("Simplest Class Template"),
+    return Scaffold(
+      appBar: AppBar(
+      ),
+      body: Column(
+        children: [
+
+        ],
+      ),
     );
   }
 }
