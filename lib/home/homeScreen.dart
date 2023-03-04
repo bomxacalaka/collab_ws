@@ -1,11 +1,11 @@
-import 'package:collab_ws/jobsPage/addButton.dart';
-import 'package:collab_ws/home/components.dart';
-import 'package:collab_ws/jobsPage/jobsScreen.dart';
+// import 'package:collab_ws/jobsPage/addButton.dart';
+// import 'package:collab_ws/home/components.dart';
+// import 'package:collab_ws/jobsPage/jobsScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import '../jobsPage/jobsScreen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:http/http.dart' as http;
+// import '../jobsPage/jobsScreen.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
