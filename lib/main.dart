@@ -1,9 +1,12 @@
 import 'package:collab_ws/WelcomePage/rootApp.dart';
+import 'package:collab_ws/jobsPage/edit_job.dart';
+import 'package:collab_ws/jobsPage/job_description.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'WelcomePage/loginPage.dart';
 import 'WelcomePage/registerPage.dart';
 import 'home/homeScreen.dart';
+import 'jobsPage/add_job.dart';
 import 'jobsPage/jobsScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -47,6 +50,9 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/jobs': (context) => const JobsScreen(),
         '/root': (context) => const RootApp(),
+        '/job_description': (context) => const JobDescription(),
+        '/add_job': (context) => const AddJob(),
+        '/edit_job': (context) => const EditJob(),
       }
     );
   }
