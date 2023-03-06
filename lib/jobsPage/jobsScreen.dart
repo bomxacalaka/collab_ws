@@ -2,6 +2,7 @@
 import 'package:collab_ws/jobsPage/jobTiles.dart';
 // import 'package:collab_ws/jobsPage/jobsScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 // import 'package:http/http.dart' as http;
 // import 'jobsScreen.dart';
 import 'alertBox.dart';
@@ -121,6 +122,8 @@ class _JobsScreenState extends State<JobsScreen> {
         // ],
       ),
       body:
+      SlidableAutoCloseBehavior( // added so that a single tile stays open at a time
+        child:
       ListView.builder(
           itemCount: jobs.length,
           itemBuilder: (context, index) {
@@ -133,7 +136,8 @@ class _JobsScreenState extends State<JobsScreen> {
             );
           }
       ),
-    );
+      ),
+      );
   }
 }
 

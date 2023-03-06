@@ -20,17 +20,17 @@ class JobTiles extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(0.0),
       child: Slidable(
         endActionPane: ActionPane(
-          motion: StretchMotion(),
+          motion: DrawerMotion(),
           children: [
             // settings
             SlidableAction(
               onPressed: settingsTap,
               backgroundColor: Colors.black,
               icon: Icons.settings,
-              borderRadius: BorderRadius.circular(12),
+              // borderRadius: BorderRadius.circular(12),
             ),
 
             // delete
@@ -38,7 +38,7 @@ class JobTiles extends StatelessWidget{
               onPressed: deleteTap,
               backgroundColor: Colors.red,
               icon: Icons.delete,
-              borderRadius: BorderRadius.circular(12),
+              // borderRadius: BorderRadius.circular(12),
             )
           ],
         ),
