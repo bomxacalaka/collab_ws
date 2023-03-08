@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:collab_ws/jobsPage/jobTiles.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:collab_ws/jobsPage/jobsScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -86,6 +87,12 @@ class _JobsScreenState extends State<JobsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.logout),
+          onPressed: () {
+            FirebaseAuth.instance.signOut();
+          },
+        ),
         iconTheme: const IconThemeData(color: Colors.black),
         title: const Text(
             "Home",
