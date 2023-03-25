@@ -1,6 +1,7 @@
 # SPEC5
 
 [Working website](drbom.net)
+
 [Group video](https://www.youtube.com/watch?v=4mR9ThzpnS8)
 
 
@@ -14,9 +15,11 @@ Admins can view the status of all tasks and make adjustments as needed, such as 
 
 
 The admin page doesnt have an account login, and it allows you to add/remove/edit jobs.
+
 ![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/admin_homepage.png?raw=true)
 
 So far we have only the add jobs display.
+
 ![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/add_job.png?raw=true)
 
 
@@ -29,6 +32,7 @@ For the carer we have a register/login system.
 ![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/login_in.png?raw=true)
 
  In the future each carer account will only see the jobs assigns for their full name.
+ 
 ![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/homepage.png?raw=true)
 
 ![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/specific_job_info.png?raw=true)
