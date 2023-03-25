@@ -1,6 +1,8 @@
 # SPEC5
 
-[Link to working website](drbom.net)
+[Working website](drbom.net)
+[Group video](https://www.youtube.com/watch?v=4mR9ThzpnS8)
+
 
 Clients calls the admin to request a task which will then assing a carer to the task.
 
