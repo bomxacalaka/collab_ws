@@ -1,0 +1,59 @@
+<?php
+
+$host = 'locahost';
+$username = 'stephan';
+$password = 'changeme69';
+$dbname = 'SPEC5';
+
+// Create connection = $conn
+$conn = mysqli_connect($host, $username, $password, $dbname);
+
+// Check connection 
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+    echo "Connection Error";
+} else {
+    // Prepare the SQL statement to retrieve the maximum ID number and increment it by 1
+    $sql = 'SELECT MAX(id) as max_id FROM jobs'; 
+    $stmt = $pdo->prepare($sql); 
+    $stmt->execute();
+    $result = $stmt->fetch(); 
+    $id = $result['max_id'] + 1; 
+    echo "id = $id";
+
+    // grab values from the HTML
+    $nameElder = mysqli_real_escape_string($conn, $_POST['elder_name']);
+    $job = mysqli_real_escape_string($conn, $_POST['job_name']);
+    $date = mysqli_real_escape_string($conn, $_POST['date']);
+    $jobDescription = mysqli_real_escape_string($conn, $_POST['job_description']);
+    $address = mysqli_real_escape_string($conn, $POST['address']);
+
+    // if no date information is recieved. date info will be given via this block
+    if(!$date){
+        $date = date('Y-m-d');
+        echo "Using todays date";
+    }
+
+    // sanitise data injected
+    $address = filter_var($address, FILTER_SANITIZE_STRING);
+    $nameElder = filter_var($nameElder, FILTER_SANITIZE_STRING);
+    $job = filter_var($job, FILTER_SANITIZE_STRING);
+    $date = filter_var($date, FILTER_SANITIZE_STRING);
+    $jobDescription = filter_var($jobDescription, FILTER_SANITIZE_STRING);
+
+
+    // insert data into SQL table
+    $sql = "INSERT INTO Person (`id`, `elder name`, `job`, `date`, `job description`, `address`) 
+        VALUES ('$id', '$nameElder', '$job', '$date', '$jobDescription', '$address')";
+
+    // check queery has been completed
+    if (mysqli_query($conn, $sql)) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+    // close connection
+    mysqli_close($conn);
+    $conn = null;
+}
+?>

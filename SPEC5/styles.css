@@ -1,0 +1,23 @@
+body{
+    background-image: url("https://9e0d-134-220-251-92.eu.ngrok.io/images/soap_trap.jpeg");
+    background-position: center center; 
+    background-attachment: fixed;
+    background-repeat: no-repeat; 
+    background-size: cover; 
+}
+.btn{
+    padding: 8px 16px;
+}
+.main_frame{
+    background-color: rgba(0, 0, 0, 0.2);;
+}
+.card-header{
+    background-color: rgb(247, 220, 236);
+}
+.card-body{
+    background-color: #F5F5F5;
+}
+form, .form-group{
+    background-color: #F5F5F5;
+
+}
