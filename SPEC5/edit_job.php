@@ -8,28 +8,29 @@ $dbname = 'SPEC5';
 // Create connection = $conn
 $conn = mysqli_connect($host, $username, $password, $dbname);
 
-// Get all values sent from the javascript
-$id = $_POST['id_'];
-$nameElder = $_POST['elder_name'];
-$job = $_POST['job_name'];
-$date = $_POST['date_'];
-$jobDescription = $_POST['job_description'];
-$carerName = $_POST['carer_name'];
-$address = $_POST['address_'];
-
-// Sanitise data inputted
-$nameElder = filter_var($nameElder, FILTER_SANITIZE_STRING);
-$job = filter_var($job, FILTER_SANITIZE_STRING);
-$date = filter_var($date, FILTER_SANITIZE_STRING);
-$jobDescription = filter_var($jobDescription, FILTER_SANITIZE_STRING);
-$carerName = filter_var($carerName, FILTER_SANITIZE_STRING);
-$address = filter_var($address, FILTER_SANITIZE_STRING);
-
-// Check for connection errors
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+    echo "Connection Error";
 } else {
+
+    // Get all values sent from the javascript
+    $id = $_POST['id_'];
+    $nameElder = $_POST['elder_name'];
+    $job = $_POST['job_name'];
+    $date = $_POST['date_'];
+    $jobDescription = $_POST['job_description'];
+    $carerName = $_POST['carer_name'];
+    $address = $_POST['address_'];
+
+    // Sanitise data inputted
+    $nameElder = filter_var($nameElder, FILTER_SANITIZE_STRING);
+    $job = filter_var($job, FILTER_SANITIZE_STRING);
+    $date = filter_var($date, FILTER_SANITIZE_STRING);
+    $jobDescription = filter_var($jobDescription, FILTER_SANITIZE_STRING);
+    $carerName = filter_var($carerName, FILTER_SANITIZE_STRING);
+    $address = filter_var($address, FILTER_SANITIZE_STRING);
+
+
     // Construct the SQL query with the WHERE clause to filter by ID
     $sql = "UPDATE tablename SET ";
     if ($nameElder != null) {
@@ -63,3 +64,4 @@ if ($conn->connect_error) {
     $conn->close();
     $conn = null;
 }
+

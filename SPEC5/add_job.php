@@ -1,9 +1,9 @@
 <?php
 
-$host = 'locahost';
+$host = '0.tcp.eu.ngrok.io';
 $username = 'stephan';
 $password = 'changeme69';
-$dbname = 'SPEC5';
+$dbname = 'Person';
 
 // Create connection = $conn
 $conn = mysqli_connect($host, $username, $password, $dbname);
@@ -13,8 +13,9 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
     echo "Connection Error";
 } else {
+    
     // Prepare the SQL statement to retrieve the maximum ID number and increment it by 1
-    $sql = 'SELECT MAX(id) as max_id FROM jobs'; 
+    $sql = 'SELECT MAX(id) as max_id FROM Person'; 
     $stmt = $pdo->prepare($sql); 
     $stmt->execute();
     $result = $stmt->fetch(); 
@@ -24,9 +25,9 @@ if (!$conn) {
     // grab values from the HTML
     $nameElder = mysqli_real_escape_string($conn, $_POST['elder_name']);
     $job = mysqli_real_escape_string($conn, $_POST['job_name']);
-    $date = mysqli_real_escape_string($conn, $_POST['date']);
+    $date = mysqli_real_escape_string($conn, $_POST['date_']);
     $jobDescription = mysqli_real_escape_string($conn, $_POST['job_description']);
-    $address = mysqli_real_escape_string($conn, $POST['address']);
+    $address = mysqli_real_escape_string($conn, $POST['']);
 
     // if no date information is recieved. date info will be given via this block
     if(!$date){
