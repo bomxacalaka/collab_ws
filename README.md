@@ -9,4 +9,16 @@ Once the carer has completed the task, they mark it as done in the app, and the 
 
 Admins can view the status of all tasks and make adjustments as needed, such as reassigning tasks or changing the schedule.
 
-![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/first_proposal_for_group/pics/appadd.png?raw=true)
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/login_in.png?raw=true)
+
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/register.png?raw=true)
+
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/register_complete.png?raw=true)
+
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/homepage.png.png?raw=true)
+
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/specific_job_info.png?raw=true)
+
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/admin_homepage.png?raw=true)
+
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/add_job.png?raw=true)
