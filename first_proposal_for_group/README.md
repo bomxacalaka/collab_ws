@@ -1,16 +1,43 @@
 # collab_ws
 
-An app used to connect careers to clients.
+An app used to connect careers to clients. Simple app demonstration to help everyone get on the same page to construct the real app.
 
-## Getting Started
+Register Screen
 
-This project is a starting point for a Flutter application.
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/appcreateacc.png?raw=true)
 
-A few resources to get you started if this is your first Flutter project:
+Login Screen
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/apploginin.png?raw=true)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Forgot password Screen
+
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/appreset.png?raw=true)
+
+Forgot email inbox
+
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/appresetemail.png?raw=true)
+
+HomePage Screen
+
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/apphome.png?raw=true)
+
+AddJob Screen
+
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/appadd.png?raw=true)
+
+Slide to delete/edit
+
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/appdeletechoice.png?raw=true)
+
+Edit Screen
+
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/appedit.png?raw=true)
+
+Firebase database
+
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/firebasedb.png?raw=true)
+
+Firebase homepage table of jobs
+
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/firebasehome.png?raw=true)
