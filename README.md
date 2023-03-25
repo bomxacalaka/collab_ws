@@ -9,4 +9,4 @@ Once the carer has completed the task, they mark it as done in the app, and the 
 
 Admins can view the status of all tasks and make adjustments as needed, such as reassigning tasks or changing the schedule.
 
-![alt text](https://github.com/bomxacalaka/collab_ws/blob/main/appadd.png?raw=true)
+![alt text](https://github.com/bomxacalaka/collab_ws/main/appadd.png?raw=true)
