@@ -26,6 +26,6 @@ For the carer we have a register/login system.
 ![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/login_in.png?raw=true)
 
  In the future each carer account will only see the jobs assigns for their full name.
-![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/homepage.png.png?raw=true)
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/homepage.png?raw=true)
 
 ![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/SPEC5/webapppics/specific_job_info.png?raw=true)
