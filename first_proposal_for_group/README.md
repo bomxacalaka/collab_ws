@@ -36,8 +36,8 @@ Edit Screen
 
 Firebase database
 
-![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/first_proposal_for_group/pics/firebasedb.png?raw=true)
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/first_proposal_for_group/pics/firebasehome.png?raw=true)
 
 Firebase homepage table of jobs
 
-![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/first_proposal_for_group/pics/firebasehome.png?raw=true)
+![alt text](https://github.com/bomxacalaka/collab_ws/blob/master/first_proposal_for_group/pics/firebasedb.png?raw=true)
